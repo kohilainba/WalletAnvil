@@ -20,7 +20,6 @@ class deposit(depositTemplate):
         self.label_1.text = f"Welcome to Green Gate Financial, {username}"
         user_account_numbers = anvil.server.call('get_user_account_numbers', self.user['phone'])
         self.drop_down_1.items = list(map(str, user_account_numbers)) if user_account_numbers is not None else []
-
         self.display()
 
     def button_1_click(self, **event_args):
@@ -31,117 +30,43 @@ class deposit(depositTemplate):
             entered_amount = ''.join(filter(str.isdigit, str(self.text_box_2.text)))
             money_value = float(entered_amount) if entered_amount else 0.0
 
+            # Check if a balance row already exists for the user
+            existing_balance = app_tables.wallet_users_balance.get(phone=self.user['phone'])
+
+            if existing_balance:
+                # Update the existing balance
+                existing_balance['e_money'] += money_value
+            else:
+                # Add a new row for the user if no existing balance
+                balance = app_tables.wallet_users_balance.add_row(
+                    currency_type="INR",  # Replace with the actual currency type
+                    e_money=money_value,
+                    phone=self.user['phone']
+                )
+
+            # Add a new transaction row
             new_transaction = app_tables.wallet_users_transaction.add_row(
                 phone=self.user['phone'],
                 fund=money_value,
                 date=current_datetime,
                 transaction_type="Debit",
                 transaction_status="Wallet-Topup",
-                receiver_phone=""
-            )
-            
-            balance = app_tables.wallet_users_balance.add_row(
-                currency_type= INR,
-                e_money = money_value,
-                phone=self.user['phone']
+                receiver_phone=None
             )
 
             self.label_2.text = "Money added successfully to the account."
         else:
             self.label_2.text = "Error: No matching accounts found for the user or invalid account number."
 
-   
-
     def drop_down_1_change(self, **event_args):
         self.display()
 
-
-         
-
-# Assuming 'user_currency' is a dictionary containing user's currency information
-# 'money_value' is the amount of money to be added
-# 'selected_symbol' is the currency symbol selected by the user
-
-    # def button_1_click(self, money_value, selected_symbol):
-    #     if 'phone' in self.user:
-    #         # Assuming 'user_currency' is a dictionary containing user's currency information
-    #         user_currency = self.user['user_currency']
-    
-    #         # Update the user's e-wallet with the deposited amount
-    #         if selected_symbol in user_currency:
-    #             user_currency[selected_symbol] = str(float(user_currency[selected_symbol] or 0) + money_value)
-    #         else:
-    #             self.label_2.text = "Error: Invalid currency symbol selected."
-    #             return
-    
-    #         user_currency.update()
-    
-    #         # Add a new transaction record
-    #         new_transaction = app_tables.wallet_users_transactions.add_row(
-    #             phone=self.user['phone'],
-    #             fund=f"{selected_symbol}-{money_value}",
-    #             date=current_datetime,
-    #             transaction_type="Debit",
-    #             transaction_status="Wallet-Topup",
-    #             receiver_phone=money_value
-    #         )
-    
-    #         self.label_2.text = "Money added successfully to the e-wallet."
-    
-    #     else:
-    #         self.label_2.text = "Error: User information is not available"
-
-# Example usage:
-# Assuming 'self.user' is the user object and 'current_datetime' is the current date and time
-# You may need to adapt this to your actual code structure
-# Also, handle the case where 'app_tables.transactions' and 'app_tables.user_currency' are defined
-# according to your application's backend structure.
-
-# To use the function, call it like this:
-# self.add_money_to_e_wallet(money_value, selected_symbol)
+    def display(self, **event_args):
+        acc = self.drop_down_1.selected_value
 
     def display(self, **event_args):
           acc=self.drop_down_1.selected_value
-          # user_for_emoney = self.user['username']
-          # fore_money = anvil.server.call('get_accounts_emoney',acc)
-          # acc_validate = anvil.server.call('validate_acc_no_to_display_in_transfer',acc)
-          # self.label_6.text = "$" + str(acc_validate['money_usd'])
-          # self.label_10.text = "₹ " + str(acc_validate['money_inr'])
-          # self.label_11.text = "€ " + str(acc_validate['money_euro'])
-          # self.label_12.text = "₣ " + str(acc_validate['money_swis'])
-          # e_money_value = str(fore_money['e_money'])
-          # eb= self.drop_down_2.selected_value
-          # if e_money_value and e_money_value != 'None' and e_money_value.replace('.', '', 1).isdigit() and eb == '$':
-          #   try:
-          #     e_money_value = float(e_money_value)
-          #     dollar_to_rupee = e_money_value / 80.0  # Set a default value, adjust as needed
-          #     self.label_14.text = str(dollar_to_rupee)
-          #   except ValueError:
-          #     pass 
-          #   else:
-          #       pass
-          # if eb == 'Є':
-          #   try:
-          #     e_money_value = float(e_money_value)  
-          #     euro_to_rupee = e_money_value / 90.0
-          #     self.label_14.text = str(euro_to_rupee)  # Convert result to string before assigning to label
-          #   except ValueError:
-          #     pass
-          # if eb == '₣':
-          #   try:
-          #     e_money_value = float(e_money_value)
-          #     swis_to_rupee = (e_money_value)/95.0
-          #     self.label_14.text = str(swis_to_rupee)
-          #   except ValueError:
-          #     pass   
-          # if eb == '₹':
-          #   self.label_14.text = (e_money_value)
-
-
-
-
-
-
+        
     def link_2_click(self, **event_args):
       """This method is called when the link is clicked"""
       open_form("deposit",user=self.user)

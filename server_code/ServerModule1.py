@@ -42,15 +42,6 @@ def add_info(email, username, password, pan, address, phone, aadhar):
     )
     return user_row
 
-# @anvil.server.callable
-# def get_user_by_phone(phone_number):
-#     # Convert the phone_number to a number before searching
-#     phone_number = int(phone_number)
-#     users = app_tables.wallet_users.search(phone=phone_number)
-#     return users[0] if users else None
-
-
-
 @anvil.server.callable
 def get_user_by_phone(phone_number):
     try:
@@ -65,30 +56,6 @@ def get_user_by_phone(phone_number):
         # Handle the case where the input cannot be converted to an integer
         return None
  
-# @anvil.server.callable
-# def get_acc_data(acc):
-#     accounts_table = app_tables.wallet_users_account.get(account_number= int(acc))
-#     return accounts_table
-  
-# @anvil.server.callable
-# def get_user_account_numbers(acc):
-#     # Fetch all matching rows for the specified user
-#     user_account = app_tables.wallet_users_account.get(account_number=int(acc))
-#     # Extract 'casa' values from all matching rows
-#     return user_account
-
-# @anvil.server.callable
-# def get_username(phone):
-#     # Implement the logic to retrieve the username associated with the given phone number
-#     # For demonstration purposes, let's assume there's a data table named 'User' with 'phone' and 'username' columns
-
-#     user = app_tables.wallet_users.get(phone=phone)
-#     if user:
-#         return user['username']
-#     else:
-#         return "Username Not Found"  
-
-
 @anvil.server.callable
 def get_acc_data(phone):
     user_accounts = app_tables.wallet_users_account.search(phone=phone)
