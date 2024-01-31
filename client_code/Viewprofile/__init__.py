@@ -7,13 +7,13 @@ from anvil import alert, open_form
 import re
 
 class Viewprofile(ViewprofileTemplate):
-    def __init__(self, phone=None, **properties):
+    def __init__(self, user=None, **properties):
         self.init_components(**properties)
-        self.user = app_tables.wallet_users.get(phone=phone)  # Use 'phone' instead of 'user'
+        self.user = user
         self.edit_mode = False  # Initial edit mode is set to False
-        if self.user:
+        if user:
             self.label_8.text = f"Welcome to Green Gate Financial, {user['username']}"
-            self.display_user_profile(self.user)  # Display user profile on form load
+            self.display_user_profile(user)  # Display user profile on form load
 
     def toggle_edit_mode_components(self):
         # Show/hide text boxes based on edit mode
@@ -101,15 +101,15 @@ class Viewprofile(ViewprofileTemplate):
 
     def link_3_click(self, **event_args):
       """This method is called when the link is clicked"""
-      open_form("transfer",phone=self.user['phone'])
+      open_form("transfer",user=self.user)
 
     def link_4_click(self, **event_args):
       """This method is called when the link is clicked"""
-      open_form("withdraw",phone=self.user['phone'])
+      open_form("withdraw",user=self.user)
 
     def link_7_click(self, **event_args):
       """This method is called when the link is clicked"""
-      open_form("service",phone=self.user['phone'])
+      open_form("service",user=self.user)
 
     def link_13_click(self, **event_args):
       """This method is called when the link is clicked"""
@@ -117,11 +117,11 @@ class Viewprofile(ViewprofileTemplate):
 
     def link_1_click(self, **event_args):
       """This method is called when the link is clicked"""
-      open_form("customer",phone=self.user['phone'])
+      open_form("customer",user=self.user)
 
     def link_8_click(self, **event_args):
       """This method is called when the link is clicked"""
-      open_form("service",phone=self.user['phone'])
+      open_form("service",user=self.user)
 
 
 
