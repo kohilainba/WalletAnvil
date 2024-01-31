@@ -13,10 +13,10 @@ class deposit(depositTemplate):
         # Set Form properties and Data Bindings.
         self.label_1.text = f"Welcome to Green Gate Financial, {user['username']}"
         print(f"User parameter in deposit form: {user}")
-        user_account_numbers = anvil.server.call('get_acc_data', self.user['phone'])
+        account_numbers = anvil.server.call('get_acc_data', self.user['phone'])
         self.user['phone'] = user
         self.init_components(**properties)
-        self.dropdown_account_numbers.items = user_account_numbers
+        self.dropdown_account_numbers.items = account_numbers
         self.display()
         
 
@@ -84,44 +84,44 @@ class deposit(depositTemplate):
                   receiver_phone=money_value
                 )
 
-                self.label_2.text = "Money added successfully to the account." #Remaining limit: {}".format(remaining_limit)
-            else:
-                self.label_2.text = "Error: No matching accounts found for the user or invalid account number."
+            self.label_2.text = "Money added successfully to the account." #Remaining limit: {}".format(remaining_limit)
         else:
-            self.label_2.text = "Error: User information is not available"
+                self.label_2.text = "Error: No matching accounts found for the user or invalid account number."
+        
+         
 
 # Assuming 'user_currency' is a dictionary containing user's currency information
 # 'money_value' is the amount of money to be added
 # 'selected_symbol' is the currency symbol selected by the user
 
-    def button_1_click(self, money_value, selected_symbol):
-        if 'phone' in self.user:
-            # Assuming 'user_currency' is a dictionary containing user's currency information
-            user_currency = self.user['user_currency']
+    # def button_1_click(self, money_value, selected_symbol):
+    #     if 'phone' in self.user:
+    #         # Assuming 'user_currency' is a dictionary containing user's currency information
+    #         user_currency = self.user['user_currency']
     
-            # Update the user's e-wallet with the deposited amount
-            if selected_symbol in user_currency:
-                user_currency[selected_symbol] = str(float(user_currency[selected_symbol] or 0) + money_value)
-            else:
-                self.label_2.text = "Error: Invalid currency symbol selected."
-                return
+    #         # Update the user's e-wallet with the deposited amount
+    #         if selected_symbol in user_currency:
+    #             user_currency[selected_symbol] = str(float(user_currency[selected_symbol] or 0) + money_value)
+    #         else:
+    #             self.label_2.text = "Error: Invalid currency symbol selected."
+    #             return
     
-            user_currency.update()
+    #         user_currency.update()
     
-            # Add a new transaction record
-            new_transaction = app_tables.wallet_users_transactions.add_row(
-                phone=self.user['phone'],
-                fund=f"{selected_symbol}-{money_value}",
-                date=current_datetime,
-                transaction_type="Debit",
-                transaction_status="Wallet-Topup",
-                receiver_phone=money_value
-            )
+    #         # Add a new transaction record
+    #         new_transaction = app_tables.wallet_users_transactions.add_row(
+    #             phone=self.user['phone'],
+    #             fund=f"{selected_symbol}-{money_value}",
+    #             date=current_datetime,
+    #             transaction_type="Debit",
+    #             transaction_status="Wallet-Topup",
+    #             receiver_phone=money_value
+    #         )
     
-            self.label_2.text = "Money added successfully to the e-wallet."
+    #         self.label_2.text = "Money added successfully to the e-wallet."
     
-        else:
-            self.label_2.text = "Error: User information is not available"
+    #     else:
+    #         self.label_2.text = "Error: User information is not available"
 
 # Example usage:
 # Assuming 'self.user' is the user object and 'current_datetime' is the current date and time
