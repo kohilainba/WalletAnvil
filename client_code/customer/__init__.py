@@ -19,9 +19,10 @@ import datetime
 
 
 class customer(customerTemplate):
-    def __init__(self, user=None, **properties):
+    def __init__(self, phone=None, **properties):
         self.init_components(**properties)
-        self.user = user  # Set the user attribute
+        # Fetch the user based on the provided phone parameter
+        self.user = app_tables.wallet_users.get(phone=phone)
         now = datetime.datetime.now()
         if now.date() != self.user['last_login']:
             if self.user['daily_limit'] is None:

@@ -9,9 +9,9 @@ import random
 
 class wallet(walletTemplate):
     global  count
-    def __init__(self, user=None, **properties):
+    def __init__(self, phone=None, **properties):
         self.init_components(**properties)
-        self.user = user
+        self.user = app_tables.wallet_users.get(phone=phone)
         
         self.label_1.text = f"Welcome to Green Gate Financial, {user['username']}"
         self.bank_details_visible = False
