@@ -65,7 +65,10 @@ def get_user_by_phone(phone_number):
         # Handle the case where the input cannot be converted to an integer
         return None
  
-
+@anvil.server.callable
+def get_acc_data(acc):
+    currency_table = app_tables.currencies.get(casa= int(acc))
+    return currency_table
 
 
 
