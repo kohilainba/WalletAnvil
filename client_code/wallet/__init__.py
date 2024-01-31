@@ -83,19 +83,19 @@ class wallet(walletTemplate):
 
     def link_3_click(self, **event_args):
       """This method is called when the link is clicked"""
-      open_form("transfer",user=self.user)
+      open_form("transfer",phone=self.user['phone'])
 
     def link_4_click(self, **event_args):
       """This method is called when the link is clicked"""
-      open_form("withdraw",user=self.user)
+      open_form("withdraw",phone=self.user['phone'])
 
     def link_7_click(self, **event_args):
       """This method is called when the link is clicked"""
-      open_form("service",user=self.user)
+      open_form("service",phone=self.user['phone'])
 
     def link_1_click(self, **event_args):
       """This method is called when the link is clicked"""
-      open_form("customer",user=self.user)
+      open_form("customer",phone=self.user['phone'])
 
     def link_13_click(self, **event_args):
       """This method is called when the link is clicked"""
@@ -103,7 +103,7 @@ class wallet(walletTemplate):
 
     def link_8_click(self, **event_args):
       """This method is called when the link is clicked"""
-      open_form("service",user=self.user)
+      open_form("service",phone=self.user['phone'])
 
 
 
