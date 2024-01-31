@@ -1,20 +1,20 @@
-# from ._anvil_designer import depositTemplate
-# from anvil import *
-# #import anvil.users
-# import anvil.server
-# import anvil.tables as tables
-# import anvil.tables.query as q
-# from anvil.tables import app_tables
-# from datetime import datetime
+from ._anvil_designer import depositTemplate
+from anvil import *
+#import anvil.users
+import anvil.server
+import anvil.tables as tables
+import anvil.tables.query as q
+from anvil.tables import app_tables
+from datetime import datetime
 
 
-# class deposit(depositTemplate):
-#     def __init__(self, user=None, **properties):
-#         # Set Form properties and Data Bindings.
-#         self.label_1.text = f"Welcome to Green Gate Financial, {user['username']}"
-#         print(f"User parameter in deposit form: {user}")
-#         self.user = user
-#         self.init_components(**properties)
+class deposit(depositTemplate):
+    def __init__(self, user=None, **properties):
+        # Set Form properties and Data Bindings.
+        self.label_1.text = f"Welcome to Green Gate Financial, {user['username']}"
+        print(f"User parameter in deposit form: {user}")
+        self.user = user
+        self.init_components(**properties)
 
   
 #     def button_1_click(self, **event_args):
@@ -97,34 +97,34 @@
 # 'money_value' is the amount of money to be added
 # 'selected_symbol' is the currency symbol selected by the user
 
-def add_money_to_e_wallet(self, money_value, selected_symbol):
-    if 'phone' in self.user:
-        # Assuming 'user_currency' is a dictionary containing user's currency information
-        user_currency = self.user['user_currency']
-
-        # Update the user's e-wallet with the deposited amount
-        if selected_symbol in user_currency:
-            user_currency[selected_symbol] = str(float(user_currency[selected_symbol] or 0) + money_value)
+    def button_1_click(self, money_value, selected_symbol):
+        if 'phone' in self.user:
+            # Assuming 'user_currency' is a dictionary containing user's currency information
+            user_currency = self.user['user_currency']
+    
+            # Update the user's e-wallet with the deposited amount
+            if selected_symbol in user_currency:
+                user_currency[selected_symbol] = str(float(user_currency[selected_symbol] or 0) + money_value)
+            else:
+                self.label_2.text = "Error: Invalid currency symbol selected."
+                return
+    
+            user_currency.update()
+    
+            # Add a new transaction record
+            new_transaction = app_tables.wallet_users_transactions.add_row(
+                phone=self.user['phone'],
+                fund=f"{selected_symbol}-{money_value}",
+                date=current_datetime,
+                transaction_type="Debit",
+                transaction_status="Wallet-Topup",
+                receiver_phone=money_value
+            )
+    
+            self.label_2.text = "Money added successfully to the e-wallet."
+    
         else:
-            self.label_2.text = "Error: Invalid currency symbol selected."
-            return
-
-        user_currency.update()
-
-        # Add a new transaction record
-        new_transaction = app_tables.wallet_users_transactions.add_row(
-            phone=self.user['phone'],
-            fund=f"{selected_symbol}-{money_value}",
-            date=current_datetime,
-            transaction_type="Debit",
-            transaction_status="Wallet-Topup",
-            receiver_phone=money_value
-        )
-
-        self.label_2.text = "Money added successfully to the e-wallet."
-
-    else:
-        self.label_2.text = "Error: User information is not available"
+            self.label_2.text = "Error: User information is not available"
 
 # Example usage:
 # Assuming 'self.user' is the user object and 'current_datetime' is the current date and time
