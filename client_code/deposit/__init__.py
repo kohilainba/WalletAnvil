@@ -13,85 +13,82 @@ class deposit(depositTemplate):
         # Set Form properties and Data Bindings.
         self.label_1.text = f"Welcome to Green Gate Financial, {user['username']}"
         print(f"User parameter in deposit form: {user}")
-        self.user = user
+        user_account_numbers = anvil.server.call('get_acc_data', self.user['phone'])
+        self.user['phone'] = user
         self.init_components(**properties)
+        self.dropdown_account_numbers.items = user_account_numbers
+        self.display()
+        
 
   
-#     def button_1_click(self, **event_args):
-#         current_datetime = datetime.now()
+    def button_1_click(self, **event_args):
+        current_datetime = datetime.now()
 
-#         if self.user is not None:
-#             wallet3 = anvil.server.call('generate_unique_id', self.user['username'], self.user['phone'])
+        if self.user is not None:
+            
 
-#             if wallet3 is None:
-#                 self.label_2.text = "Error: Wallet is empty"
-#                 return
+            money3_numeric = ''.join(filter(str.isdigit, str(self.text_box_2.text)))
+            money_value = float(money3_numeric) if money3_numeric else 0.0
 
-#             money3_numeric = ''.join(filter(str.isdigit, str(self.text_box_3.text)))
-#             money_value = float(money3_numeric) if money3_numeric else 0.0
+            #selected_symbol = self.drop_down_1.selected_value
 
-#             selected_symbol = self.drop_down_1.selected_value
+            entered_account_number = self.drop_down_1.selected_value
 
-#             entered_account_number = self.text_box_2.text
+            user_currencies = anvil.server.call('get_acc_data', entered_account_number)
 
-#             user_currencies = anvil.server.call('get_currency_data', entered_account_number)
+            
 
-#             if len(str(entered_account_number)) < 10 or not str(entered_account_number).isdigit():
-#                 self.label_2.text = "Error: Invalid account number. Please enter at least 10 digits."
-#                 return
+            # if user_account is not None:
+            #     user_account = user_currencies
 
-#             if user_currencies is not None:
-#                 user_currency = user_currencies
+            #     if selected_symbol == '€':
+            #         user_currency['money_euro'] = str((float(user_currency['money_euro'] or 0)) + money_value)
+            #     elif selected_symbol == '$':
+            #         user_currency['money_usd'] = str((float(user_currency['money_usd'] or 0)) + money_value)
+            #     elif selected_symbol == '₣':
+            #         user_currency['money_swis'] = str((float(user_currency['money_swis'] or 0)) + money_value)
+            #     elif selected_symbol == '₹':
+            #         user_currency['money_inr'] = str((float(user_currency['money_inr'] or 0)) + money_value)
+            #     else:
+            #         self.label_2.text = "Error: Invalid currency symbol selected."
+            #         return
 
-#                 if selected_symbol == '€':
-#                     user_currency['money_euro'] = str((float(user_currency['money_euro'] or 0)) + money_value)
-#                 elif selected_symbol == '$':
-#                     user_currency['money_usd'] = str((float(user_currency['money_usd'] or 0)) + money_value)
-#                 elif selected_symbol == '₣':
-#                     user_currency['money_swis'] = str((float(user_currency['money_swis'] or 0)) + money_value)
-#                 elif selected_symbol == '₹':
-#                     user_currency['money_inr'] = str((float(user_currency['money_inr'] or 0)) + money_value)
-#                 else:
-#                     self.label_2.text = "Error: Invalid currency symbol selected."
-#                     return
+            #     user_currency.update()
 
-#                 user_currency.update()
+                # #Convert deposited amount to INR
+                # inr_value = money_value
+                # if selected_symbol != '₹':
+                #     # Define exchange rates
+                #     exchange_rates = {'$': 74.5, '€': 88.2, '₣': 80.0}  # Example rates
+                #     if selected_symbol in exchange_rates:
+                #         inr_value = money_value * exchange_rates[selected_symbol]
+                #     else:
+                #         self.label_2.text = "Error: Invalid currency symbol selected."
+                #         return
 
-#                 # #Convert deposited amount to INR
-#                 # inr_value = money_value
-#                 # if selected_symbol != '₹':
-#                 #     # Define exchange rates
-#                 #     exchange_rates = {'$': 74.5, '€': 88.2, '₣': 80.0}  # Example rates
-#                 #     if selected_symbol in exchange_rates:
-#                 #         inr_value = money_value * exchange_rates[selected_symbol]
-#                 #     else:
-#                 #         self.label_2.text = "Error: Invalid currency symbol selected."
-#                 #         return
+                # # Update the user's limit in INR
+                # remaining_limit = int(self.user['limit'] or 0) - inr_value
+                # if remaining_limit < 0:
+                #     alert("Limit exceeded. Cannot deposit more than the limit.")
+                #     return  # Return to prevent storing negative value in 'limit' column and further execution
 
-#                 # # Update the user's limit in INR
-#                 # remaining_limit = int(self.user['limit'] or 0) - inr_value
-#                 # if remaining_limit < 0:
-#                 #     alert("Limit exceeded. Cannot deposit more than the limit.")
-#                 #     return  # Return to prevent storing negative value in 'limit' column and further execution
+                # self.user['limit'] = remaining_limit
+                # self.user.update()
 
-#                 # self.user['limit'] = remaining_limit
-#                 # self.user.update()
+            new_transaction = app_tables.wallet_users_transactions.add_row(
+                  phone=self.user['phone'],
+                  fund=f"{selected_symbol}-{money_value}",
+                  date=current_datetime,
+                  transaction_type="Debit",
+                  transaction_status="Wallet-Topup",
+                  receiver_phone=money_value
+                )
 
-#                 new_transaction = app_tables.transactions.add_row(
-#                     user=self.user['username'],
-#                     casa=int(entered_account_number),
-#                     e_wallet=wallet3,
-#                     money=f"{selected_symbol}-{money_value}",
-#                     date=current_datetime,
-#                     transaction_type="Deposit",
-#                     proof="success"
-#                 )
-
-#                 self.label_2.text = "Money added successfully to the account." #Remaining limit: {}".format(remaining_limit)
-#             else:
-#                 self.label_2.text = "Error: No matching accounts found for the user or invalid account number."
-#         else:
-#             self.label_2.text = "Error: User information is not available"
+                self.label_2.text = "Money added successfully to the account." #Remaining limit: {}".format(remaining_limit)
+            else:
+                self.label_2.text = "Error: No matching accounts found for the user or invalid account number."
+        else:
+            self.label_2.text = "Error: User information is not available"
 
 # Assuming 'user_currency' is a dictionary containing user's currency information
 # 'money_value' is the amount of money to be added

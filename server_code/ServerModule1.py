@@ -67,8 +67,8 @@ def get_user_by_phone(phone_number):
  
 @anvil.server.callable
 def get_acc_data(acc):
-    currency_table = app_tables.currencies.get(casa= int(acc))
-    return currency_table
+    accounts_table = app_tables.wallet_users_account.get(account_number= int(acc))
+    return accounts_table
 
 
 
