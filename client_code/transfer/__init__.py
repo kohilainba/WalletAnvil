@@ -31,7 +31,7 @@ class transfer(transferTemplate):
         
         # Use the phone number of the depositor to identify their account
         depositor_phone_number = self.user['phone']
-        fore_money_depositor = anvil.server.call('get_accounts_emoney_using_phone_number', depositor_phone_number)
+        depositor = anvil.server.call('get_accounts_emoney_using_phone_number', depositor_phone_number)
 
         # Use the entered phone number to identify the receiver's account
         fore_money_sent = anvil.server.call('get_accounts_emoney_using_phone_number', entered_phone_number)
