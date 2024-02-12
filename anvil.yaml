@@ -24,13 +24,13 @@ db_schema:
     server: full
     columns:
     - name: username
-      admin_ui: {width: 200, order: 0}
+      admin_ui: {order: 0, width: 222}
       type: string
     - name: phone
       admin_ui: {width: 200, order: 1}
       type: number
     - name: email
-      admin_ui: {width: 200, order: 2}
+      admin_ui: {order: 2, width: 225}
       type: string
     - name: password
       admin_ui: {width: 200, order: 3}
