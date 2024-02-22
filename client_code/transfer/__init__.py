@@ -93,7 +93,7 @@ class transfer(transferTemplate):
             anvil.alert("Insufficient balance. Please add funds.")
         else:
           self.label_4.text = "Error: No matching accounts found for the user or invalid account number."
-        open_form('customer')
+        open_form('customer', user=self.user)
   
           
     def link_8_click(self, **event_args):
