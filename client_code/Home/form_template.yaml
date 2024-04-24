@@ -34,12 +34,6 @@ components:
             foreground: 'theme:Primary 500'}
           type: Label
           layout_properties: {}
-      - name: home
-        properties: {text: Home, icon: 'fa:home', foreground: '', bold: true, font: '',
-          font_size: 19}
-        type: Link
-        layout_properties: {row: VWOLFN, width_xs: 1, col_xs: 4}
-        event_bindings: {click: home_click}
       - name: about_us
         properties: {text: About us, foreground: '', bold: true, icon: 'fa:adn', font_size: 19,
           font: ''}
@@ -113,19 +107,22 @@ components:
           font_size: 19, font: '', align: left}
         type: Link
         layout_properties: {x: 775.0999877937138, y: 8.862500000745058, width: 93.5875015258789}
+      - name: home
+        properties: {text: Home, icon: 'fa:home', foreground: '', bold: true, font: '',
+          font_size: 19}
+        type: Link
+        layout_properties: {x: 284.1805216483772, y: 0, width: 105.70833587646484}
+        event_bindings: {click: home_click}
+    - name: flow_panel_1_copy_copy
+      properties: {visible: true}
+      type: FlowPanel
+      layout_properties: {x: 502.9166669845581, y: 151.26389567181468, width: 1055.763916015625}
+      components: []
     - name: xy_panel_4
       properties: {height: 56}
       type: XYPanel
-      layout_properties: {x: 524.2499189376831, y: 80.04166666790843, width: 856.625}
+      layout_properties: {x: 195.38894144818187, y: 72.08333842083812, width: 856.625}
       components:
-      - name: link_8
-        properties: {text: Wallet for consumer, font: a, bold: true, align: center,
-          underline: false}
-        type: Link
-        layout_properties: {x: 14.300000000745058, y: 3.899999428540468, width: 192.0500030517578}
-        data_bindings:
-        - {property: border, code: 'self.item[''line'']', writeback: false}
-        event_bindings: {click: link_8_click, show: link_8_show, hide: link_8_hide}
       - name: link_13
         properties: {text: Money Transfer, font: a, font_size: 18, bold: true, align: center}
         type: Link
@@ -151,11 +148,6 @@ components:
         type: Button
         layout_properties: {x: 746.6376159675419, y: 5.075001526623964, width: 85.3499984741211}
         event_bindings: {click: button_3_click}
-    - name: flow_panel_1_copy_copy
-      properties: {visible: true}
-      type: FlowPanel
-      layout_properties: {x: 502.9166669845581, y: 151.26389567181468, width: 1055.763916015625}
-      components: []
   - name: xy_panel_3
     properties: {role: null, width: 1872, align: center, height: 541.6000061035156,
       tooltip: '', border: '', foreground: '', visible: true, spacing_above: small,
