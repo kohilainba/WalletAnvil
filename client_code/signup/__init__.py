@@ -69,6 +69,7 @@ class signup(signupTemplate):
             else:
                 self.pass_card.visible = True
                 self.label_17.text = "Password must have at least 1 number, 1 character, 1 symbol, and be at least 8 characters long."
+                print(self.label_17.text)
                 self.label_17.foreground = "#990000"
                 self.text_box_5.text = ''
                 self.text_box_6.text = ''
@@ -79,6 +80,8 @@ class signup(signupTemplate):
             else:
                 self.pass_card.visible = True
                 self.label_17.text = "Passwords don't match"
+                print(self.label_17.text)
+                print'
                 self.label_17.foreground = "#990000"
                 self.text_box_5.text =''
                 self.text_box_5.focus()
