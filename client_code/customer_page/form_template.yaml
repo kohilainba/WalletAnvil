@@ -144,7 +144,7 @@ components:
             components:
             - properties: {text: My Wallet}
               type: Label
-              layout_properties: {x: 109.08749084547162, y: 0, width: 56}
+              layout_properties: {x: 109.08749084547162, y: 0, width: 67.36361694335938}
               name: label_3_copy_3
             - properties: {role: null, vertical_align: center, height: 30, tooltip: '',
                 border: '', foreground: '', visible: true, display_mode: shrink_to_fit,
