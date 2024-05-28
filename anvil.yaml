@@ -135,9 +135,6 @@ db_schema:
     - name: currency_type
       admin_ui: {width: 200, order: 0}
       type: string
-    - name: balance
-      admin_ui: {width: 200, order: 1}
-      type: number
     - name: phone
       admin_ui: {width: 200, order: 2}
       type: number
