@@ -10,7 +10,7 @@ class admin(adminTemplate):
         self.init_components(**properties)
         self.user = user
         if user is not None:
-            self.label_2.text = user['username']
+            self.label_2.text = user['users_username']
         self.refresh_data()
 
     def refresh_data(self):
@@ -21,7 +21,7 @@ class admin(adminTemplate):
         print("Number of transactions retrieved:", len(transactions))
 
         # Filter transactions to include only 'Credit' and 'Debit' types
-        filtered_transactions = [t for t in transactions if t['transaction_type'] in ['Credit', 'Debit']]
+        filtered_transactions = [t for t in transactions if t['users_transaction_type'] in ['Credit', 'Debit']]
 
         # DEBUG: Print the number of transactions after filtering
         print("Number of transactions after filtering:", len(filtered_transactions))
