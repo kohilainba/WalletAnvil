@@ -108,14 +108,14 @@ class customer_page(customer_pageTemplate):
 
     def refresh_data(self):
         # Get the user's phone number
-        phone_number = self.user['phone']
+        phone_number = self.user['users_phone']
 
         #getting the data for total wallet amount 
         now = datetime.datetime.now()
         formatted_date = now.strftime('%a, %d-%b, %Y')
         self.label_11.text = formatted_date
         # Display the username
-        self.label_20.text = self.user['username']
+        self.label_20.text = self.user['users_username']
         # Get the INR balance from the server
         #currency
         user_default_currency='INR'
