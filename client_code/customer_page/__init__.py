@@ -115,17 +115,17 @@ class customer_page(customer_pageTemplate):
         formatted_date = now.strftime('%a, %d-%b, %Y')
         self.label_11.text = formatted_date
         # Display the username
-        self.label_20.text = self.user['username']
+        self.label_20.text = self.user['users_username']
         # Get the INR balance from the server
         #currency
         user_default_currency='INR'
-        users_def_currency = app_tables.wallet_users.get(phone=self.user['phone'])
-        if users_def_currency['defaultcurrency'] is not None:
-          user_default_currency = users_def_currency['defaultcurrency']
+        users_def_currency = app_tables.wallet_users.get(phone=self.user['users_phone'])
+        if users_def_currency['users_defaultcurrency'] is not None:
+          user_default_currency = users_def_currency['users_defaultcurrency']
         else:
           user_default_currency = 'INR'
         
-        balance_iterator = anvil.server.call('get_inr_balance', self.user['phone'])
+        balance_iterator = anvil.server.call('get_inr_balance', self.user['users_phone'])
         if balance_iterator is not None:
           balance = self.inr_balance(balance_iterator, user_default_currency)
           if balance != '0':
@@ -145,7 +145,7 @@ class customer_page(customer_pageTemplate):
         print("Number of transactions retrieved:", len(transactions))
   
         # Filter transactions to include only those involving the user's phone number
-        filtered_transactions = [t for t in transactions if t['phone'] == phone_number or t['receiver_phone'] == phone_number]
+        filtered_transactions = [t for t in transactions if t['users_tphone'] == phone_number or t['receiver_phone'] == phone_number]
   
         # DEBUG: Print the number of transactions after filtering
         print("Number of transactions after filtering:", len(filtered_transactions))

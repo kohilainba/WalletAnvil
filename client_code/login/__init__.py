@@ -46,7 +46,7 @@ class login(loginTemplate):
                 open_form('admin', user=user)
             elif user_type == 'customer':
                 open_form('customer_page', user=user)
-        elif user is not None and user['password'] != password:
+        elif user is not None and user['users_password'] != password:
             self.card_3.visible = True
             self.label_4.visible = True
             self.label_5.visible = False
