@@ -19,27 +19,10 @@ runtime_options: {version: 2, client_version: '3', server_version: python3-sandb
 metadata: {}
 startup_form: null
 db_schema:
-  wallet_users_balance:
-    client: full
-    server: full
-    columns:
-    - name: users_balance
-      admin_ui: {width: 200}
-      type: number
-    - name: users_balance_currency_type
-      admin_ui: {width: 253}
-      type: string
-    - name: users_balance_phone
-      admin_ui: {width: 200}
-      type: number
-    title: wallet_users_balance
   wallet_users_transaction:
     client: full
     server: full
     columns:
-    - name: date
-      admin_ui: {width: 200, order: 0}
-      type: datetime
     - name: fund
       admin_ui: {width: 200, order: 1}
       type: number
@@ -59,20 +42,63 @@ db_schema:
       admin_ui: {width: 200, order: 6}
       type: string
     title: wallet_users_transaction
-  wallet_currency:
-    title: wallet_currency
+  wallet_users_account:
     client: full
     server: full
     columns:
-    - name: country
-      admin_ui: {width: 200, order: 0}
+    - name: users_account_number
+      admin_ui: {order: 0, width: 200}
+      type: number
+    - name: users_account_holder_name
+      admin_ui: {order: 1, width: 230}
       type: string
-    - name: currency_code
-      admin_ui: {width: 200, order: 1}
+    - name: users_account_bank_name
+      admin_ui: {order: 2, width: 200}
       type: string
-    - name: currency_icon
-      admin_ui: {width: 200, order: 2}
-      type: media
+    - name: users_account_branch_name
+      admin_ui: {order: 3, width: 200}
+      type: string
+    - name: users_account_ifsc_code
+      admin_ui: {order: 4, width: 200}
+      type: string
+    - name: users_account_type
+      admin_ui: {order: 5, width: 200}
+      type: string
+    - name: users_account_status_confirm
+      admin_ui: {order: 6, width: 200}
+      type: bool
+    - name: users_account_phone
+      admin_ui: {width: 200}
+      type: number
+    title: wallet_users_account
+  wallet_admins_actions:
+    title: wallet_admins_actions
+    client: full
+    server: full
+    columns:
+    - name: admins_actions_username
+      admin_ui: {width: 200}
+      type: string
+    - name: admins_actions_changes
+      admin_ui: {width: 200}
+      type: string
+    - name: admins_actions_date
+      admin_ui: {width: 200}
+      type: datetime
+  wallet_users_balance:
+    client: full
+    server: full
+    columns:
+    - name: users_balance
+      admin_ui: {width: 200}
+      type: number
+    - name: users_balance_currency_type
+      admin_ui: {width: 253}
+      type: string
+    - name: users_balance_phone
+      admin_ui: {width: 200}
+      type: number
+    title: wallet_users_balance
   wallet_users_service:
     client: full
     server: full
@@ -167,49 +193,6 @@ db_schema:
       admin_ui: {width: 220}
       type: string
     title: wallet_users
-  wallet_users_account:
-    client: full
-    server: full
-    columns:
-    - name: users_account_number
-      admin_ui: {order: 0, width: 200}
-      type: number
-    - name: users_account_holder_name
-      admin_ui: {order: 1, width: 230}
-      type: string
-    - name: users_account_bank_name
-      admin_ui: {order: 2, width: 200}
-      type: string
-    - name: users_account_branch_name
-      admin_ui: {order: 3, width: 200}
-      type: string
-    - name: users_account_ifsc_code
-      admin_ui: {order: 4, width: 200}
-      type: string
-    - name: users_account_type
-      admin_ui: {order: 5, width: 200}
-      type: string
-    - name: users_account_status_confirm
-      admin_ui: {order: 6, width: 200}
-      type: bool
-    - name: users_account_phone
-      admin_ui: {width: 200}
-      type: number
-    title: wallet_users_account
-  wallet_admins_actions:
-    title: wallet_admins_actions
-    client: full
-    server: full
-    columns:
-    - name: admins_actions_username
-      admin_ui: {width: 200}
-      type: string
-    - name: admins_actions_changes
-      admin_ui: {width: 200}
-      type: string
-    - name: admins_actions_date
-      admin_ui: {width: 200}
-      type: datetime
   wallet_admins_add_currency:
     title: wallet_admins_add_currency
     client: full
@@ -224,20 +207,6 @@ db_schema:
     - name: admins_add_currency_icon
       admin_ui: {width: 214}
       type: media
-  actions:
-    client: full
-    server: full
-    columns:
-    - name: username
-      admin_ui: {width: 200, order: 0}
-      type: string
-    - name: changes
-      admin_ui: {width: 200, order: 1}
-      type: string
-    - name: date
-      admin_ui: {width: 200, order: 2}
-      type: datetime
-    title: actions
 secrets:
   ? ''
   : value: {? '' : t60Z4iDuhInEOjWQ4bU7PdzvFnQ38Weuirbdt/MNZ1p+CqpxVOavkKZ1bDUo1ShCnx3gvrNyXfCOegbjGO03zKgd/dZ/sSrIaLqzHogAmtBqwHDHHoPTvQfjSLbWktutA6/SM5YCSoxPtfcumUJZX6zZuGH8tRQ=}
