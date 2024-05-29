@@ -88,17 +88,17 @@ class transactions(transactionsTemplate):
     for date_str in sorted_dates:
         date_info = self.grouped_transactions[date_str]
         for transaction in reversed(date_info['transactions']):
-            fund = transaction['users_transactfund']
-            transaction_type = transaction['transaction_type']
-            receiver_phone = transaction['receiver_phone']
-            transaction_time = transaction['date'].strftime("%I:%M %p")
+            fund = transaction['users_transaction_fund']
+            transaction_type = transaction['users_transaction_type']
+            receiver_phone = transaction['users_transaction_receiver_phone']
+            transaction_time = transaction['users_transaction_date'].strftime("%I:%M %p")
             
             # Fetch username from wallet_user table using receiver_phone
-            receiver_user = app_tables.wallet_users.get(phone=receiver_phone)
+            receiver_user = app_tables.wallet_users.get(users_phone=receiver_phone)
             if receiver_user:
-                receiver_username = receiver_user['username']
+                receiver_username = receiver_user['users_username']
             else:
-                receiver_username = self.user['username']
+                receiver_username = self.user['users_username']
             
             if transaction_type == 'Credit' or transaction_type == 'Deposited':
                 fund_display = "+" + str(fund)
@@ -113,8 +113,8 @@ class transactions(transactionsTemplate):
             # Append transaction details with username instead of receiver_phone
             self.repeating_panel_items.append({'date': date_info['date'].strftime("%Y-%m-%d"),
                                             'fund': fund_display,
-                                            'transaction_status': transaction['transaction_status'],
-                                            'transaction_type':transaction['transaction_type'],
+                                            'transaction_status': transaction['users_transaction_status'],
+                                            'transaction_type':transaction['users_transaction_type'],
                                             'receiver_username': receiver_username,
                                             'currency_type':transaction['currency'],
                                             'transaction_time':transaction_time,
@@ -138,7 +138,7 @@ class transactions(transactionsTemplate):
     self.link15_clicked = False
     all=[]
     for i in range(len(self.repeating_panel_items)):
-      all.append({'date': self.repeating_panel_items[i]['date'],
+      all.append({'date': self.repeating_panel_items[i]['users_transaction_date'],
                                           'fund': self.repeating_panel_items[i]['fund'],
                                           'transaction_status': self.repeating_panel_items[i]['transaction_status'],
                                           'receiver_username': self.repeating_panel_items[i]['receiver_username'],
