@@ -158,14 +158,11 @@ db_schema:
     - name: users_transaction_status
       admin_ui: {order: 3, width: 200}
       type: string
-    - name: receiver_phone
-      admin_ui: {width: 200, order: 4}
+    - name: users_transaction_phone
+      admin_ui: {order: 5, width: 200}
       type: number
-    - name: phone
-      admin_ui: {width: 200, order: 5}
-      type: number
-    - name: message
-      admin_ui: {width: 200, order: 6}
+    - name: users_transaction_message
+      admin_ui: {order: 6, width: 200}
       type: string
     - name: users_transaction_currency
       admin_ui: {width: 200, order: 7}
@@ -207,14 +204,14 @@ db_schema:
     client: full
     server: full
     columns:
-    - name: country
-      admin_ui: {width: 200, order: 0}
+    - name: admins_add_currency_country
+      admin_ui: {order: 0, width: 248}
       type: string
-    - name: currency_code
-      admin_ui: {width: 200, order: 1}
+    - name: admins_add_currency_code
+      admin_ui: {order: 1, width: 226}
       type: string
-    - name: currency_icon
-      admin_ui: {width: 200, order: 2}
+    - name: admins_add_currency_icon
+      admin_ui: {order: 2, width: 221}
       type: media
 secrets:
   ? ''
