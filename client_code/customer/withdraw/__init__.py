@@ -14,8 +14,8 @@ class withdraw(withdrawTemplate):
     # Set Form properties and Data Bindings.
     username = anvil.server.call('get_username', self.user['users_phone'])
     self.label_1.text = f"Welcome to Green Gate Financial, {username}"
-    bank_names = anvil.server.call('get_user_bank_name', self.user['users_accounphone'])
-    currencies=anvil.server.call('get_user_currency',self.user['phone'])
+    bank_names = anvil.server.call('get_user_bank_name', self.user['users_account_phone'])
+    currencies=anvil.server.call('get_user_currency',self.user['users_balance_phone'])
     self.drop_down_1.items = [str(row['bank_name']) for row in bank_names]
     self.drop_down_2.items= [str(row['currency_type']) for row in currencies]
     self.display()
@@ -34,8 +34,8 @@ class withdraw(withdrawTemplate):
       entered_amount = ''.join(filter(str.isdigit, str(self.text_box_2.text)))
       money_value = float(entered_amount) if entered_amount else 0.0
      # Check if a balance row already exists for the user
-      existing_balance = app_tables.wallet_users_balance.get(phone=self.user['phone'],currency_type=cur) 
-      if existing_balance['balance'] >=money_value:
+      existing_balance = app_tables.wallet_users_balance.get(users_balance_phone=self.user['users_balance_phone'],currency_type=cur) 
+      if existing_balance['users_balance'] >=money_value:
         existing_balance['balance'] -= money_value
         new_transaction = app_tables.wallet_users_transaction.add_row(
                 phone=self.user['phone'],
