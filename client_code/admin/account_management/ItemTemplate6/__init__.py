@@ -6,13 +6,16 @@ import anvil.tables.query as q
 from anvil.tables import app_tables
 
 class ItemTemplate6(ItemTemplate6Template):
-  def __init__(self, user=None, **properties):
+  def __init__(self, admin_user=None, user=None, **properties):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
-    self.user = user
-    #test = self.user['users_username']
+    self.user = admin_user
+    
     print('hi admin test')
-    print(user)
+    print(self.user)
+    self.item = user_item
+    #test = self.user['users_username']
+    
 
     # Set data bindings for label_3
     self.label_3.text = self.get_status_text()
