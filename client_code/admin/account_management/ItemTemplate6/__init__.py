@@ -6,16 +6,11 @@ import anvil.tables.query as q
 from anvil.tables import app_tables
 
 class ItemTemplate6(ItemTemplate6Template):
-  def __init__(self, admin_user=None, user=None, **properties):
+  def __init__(self, user=None, **properties):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
-    self.user = admin_user
-    
-    print('hi admin test')
-    print(self.user)
-    self.item = user_item
-    #test = self.user['users_username']
-    
+    self.user = user
+  
 
     # Set data bindings for label_3
     self.label_3.text = self.get_status_text()
@@ -29,7 +24,7 @@ class ItemTemplate6(ItemTemplate6Template):
         if self.item['users_profile_pic'] is not None:
             self.image_1.source =self.item['users_profile_pic']
         else:
-          print('user image none')
+          print('none')
   
   def get_status_text(self):
     # Return "Inactive" if self.item['inactive'] is True, otherwise "Active"
@@ -45,9 +40,7 @@ class ItemTemplate6(ItemTemplate6Template):
     
     # Extract the phone number and username
     phone_number = selected_user['users_phone']
-    print(phone_number)
     username = selected_user['users_username']
-    print(username)
     
     # Open the admin_view form and pass the phone number and admin username
     open_form('admin.admin_view_user_details', user=self.user, phone_number=phone_number, username=username)
