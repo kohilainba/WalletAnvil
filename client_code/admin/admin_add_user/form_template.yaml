@@ -1,17 +1,17 @@
 container: {type: ColumnPanel}
 components:
 - name: outlined_card_2
-  properties: {role: outlined-card, tooltip: '', border: '', foreground: '', visible: true, wrap_on: mobile, col_spacing: medium, spacing_above: small, col_widths: '{}', spacing_below: small, background: 'theme:On Primary'}
+  properties: {role: outlined-card, col_widths: '{}', spacing_above: small, background: 'theme:On Primary', wrap_on: mobile, col_spacing: medium, foreground: '', spacing_below: small, visible: true, border: '', tooltip: ''}
   type: ColumnPanel
   layout_properties: {grid_position: 'AFEVIQ,TNUTUJ', full_width_row: true}
   components:
   - name: flow_panel_1_copy
-    properties: {role: null, vertical_align: full, spacing: large, align: left, tooltip: '', border: '', foreground: '', visible: true, spacing_above: medium, spacing_below: small, background: ''}
+    properties: {role: null, vertical_align: full, align: left, spacing_above: medium, background: '', foreground: '', spacing_below: small, visible: true, border: '', tooltip: '', spacing: large}
     type: FlowPanel
     layout_properties: {grid_position: 'OOKDMX,QQGOZM', full_width_row: true}
     components:
     - name: image_1_copy_copy
-      properties: {role: null, vertical_align: center, height: 44.80000305175781, tooltip: '', border: '', foreground: '', visible: true, display_mode: shrink_to_fit, spacing_above: small, source: _/theme/letter-g.png, spacing_below: small, background: white, horizontal_align: right}
+      properties: {role: null, vertical_align: center, spacing_above: small, background: white, horizontal_align: right, source: _/theme/letter-g.png, foreground: '', display_mode: shrink_to_fit, spacing_below: small, visible: true, border: '', tooltip: '', height: 44.80000305175781}
       type: Image
       layout_properties: {width: 89.19999694824219}
     - name: label_7_copy_2_copy
@@ -65,56 +65,49 @@ components:
       type: Button
       event_bindings: {click: button_8_click}
   - name: label_1_copy
-    properties: {role: null, align: center, tooltip: '', border: '', foreground: white, visible: true, text: 'Add User''s:', font_size: 20, font: '', spacing_above: small, icon_align: left, spacing_below: small, italic: true, background: '#1d86da', bold: true, underline: false, icon: ''}
+    properties: {role: null, bold: true, align: center, spacing_above: small, background: '#1d86da', icon: '', underline: false, font: '', icon_align: left, foreground: white, spacing_below: small, visible: true, border: '', italic: true, font_size: 20, tooltip: '', text: 'Add User''s:'}
     type: Label
     layout_properties: {grid_position: 'VGAZUV,YQZDTA', full_width_row: true}
-  - name: image_1
-    properties: {role: null, vertical_align: center, height: '200', tooltip: '', border: '', foreground: '', visible: true, display_mode: zoom_to_fill, spacing_above: large, source: 'https://as1.ftcdn.net/v2/jpg/02/58/08/00/1000_F_258080094_ZZBJctFXuoz3GweY4mzGN5nGCXHEsRTI.jpg', spacing_below: small, background: '', horizontal_align: center}
-    type: Image
-    layout_properties:
-      col_widths: {}
-      grid_position: HIPTZS,QHIOUQ
-      full_width_row: true
   - name: spacer_2
     properties: {height: 32}
     type: Spacer
     layout_properties: {grid_position: 'UKNEPG,YGILMI'}
   - name: label_7_copy
-    properties: {role: null, align: left, tooltip: '', border: '', foreground: '', visible: true, text: 'Enter your email:', font_size: null, font: '', spacing_above: small, icon_align: left, spacing_below: small, italic: true, background: '', bold: true, underline: false, icon: ''}
+    properties: {role: null, bold: true, align: left, spacing_above: small, background: '', icon: '', underline: false, font: '', icon_align: left, foreground: '', spacing_below: small, visible: true, border: '', italic: true, font_size: null, tooltip: '', text: 'Enter your email:'}
     type: Label
     layout_properties: {grid_position: 'RUZJVE,JHYSWX'}
   - name: text_box_1
-    properties: {role: null, align: left, hide_text: false, tooltip: '', placeholder: Email, border: '', enabled: true, foreground: black, visible: true, text: '', font_size: null, font: '', spacing_above: small, type: email, spacing_below: small, italic: false, background: white, bold: false, underline: false}
+    properties: {role: null, bold: false, align: left, placeholder: Email, spacing_above: small, background: white, type: email, underline: false, font: '', hide_text: false, foreground: black, spacing_below: small, visible: true, border: '', italic: false, enabled: true, font_size: null, tooltip: '', text: ''}
     type: TextBox
     layout_properties: {grid_position: 'RUZJVE,FRGCYP'}
     data_bindings:
     - {code: 'self.item[''email'']', writeback: true, property: text}
   - name: label_8_copy
-    properties: {role: null, align: left, tooltip: '', border: '', foreground: '', visible: true, text: 'Enter your Username:', font_size: null, font: '', spacing_above: small, icon_align: left, spacing_below: small, italic: true, background: '', bold: true, underline: false, icon: ''}
+    properties: {role: null, bold: true, align: left, spacing_above: small, background: '', icon: '', underline: false, font: '', icon_align: left, foreground: '', spacing_below: small, visible: true, border: '', italic: true, font_size: null, tooltip: '', text: 'Enter your Username:'}
     type: Label
     layout_properties: {grid_position: 'TWOERD,EDXCCQ'}
   - name: text_box_2
-    properties: {role: null, align: left, hide_text: false, tooltip: '', placeholder: Username, border: '', enabled: true, foreground: black, visible: true, text: '', font_size: null, font: '', spacing_above: small, type: text, spacing_below: small, italic: false, background: white, bold: false, underline: false}
+    properties: {role: null, bold: false, align: left, placeholder: Username, spacing_above: small, background: white, type: text, underline: false, font: '', hide_text: false, foreground: black, spacing_below: small, visible: true, border: '', italic: false, enabled: true, font_size: null, tooltip: '', text: ''}
     type: TextBox
     layout_properties: {grid_position: 'TWOERD,INKPMZ'}
     data_bindings:
     - {code: 'self.item[''username'']', writeback: true, property: text}
   - name: label_9_copy
-    properties: {role: null, align: left, tooltip: '', border: '', foreground: '', visible: true, text: 'Enter your Password:', font_size: null, font: '', spacing_above: small, icon_align: left, spacing_below: small, italic: true, background: '', bold: true, underline: false, icon: ''}
+    properties: {role: null, bold: true, align: left, spacing_above: small, background: '', icon: '', underline: false, font: '', icon_align: left, foreground: '', spacing_below: small, visible: true, border: '', italic: true, font_size: null, tooltip: '', text: 'Enter your Password:'}
     type: Label
     layout_properties: {slot: default, grid_position: 'RVDJCO,TGXZHF'}
   - name: text_box_3
-    properties: {role: null, align: left, hide_text: true, tooltip: '', placeholder: Password, border: '', enabled: true, foreground: black, visible: true, text: '', font_size: null, font: '', spacing_above: small, type: text, spacing_below: small, italic: false, background: white, bold: false, underline: false}
+    properties: {role: null, bold: false, align: left, placeholder: Password, spacing_above: small, background: white, type: text, underline: false, font: '', hide_text: true, foreground: black, spacing_below: small, visible: true, border: '', italic: false, enabled: true, font_size: null, tooltip: '', text: ''}
     type: TextBox
     layout_properties: {grid_position: 'RVDJCO,QYNMUG'}
     data_bindings:
     - {code: 'self.item[''password'']', writeback: true, property: text}
   - name: label_13_copy
-    properties: {role: null, align: left, tooltip: '', border: '', foreground: '', visible: true, text: 'Enter Password Again:', font_size: null, font: '', spacing_above: small, icon_align: left, spacing_below: small, italic: true, background: '', bold: true, underline: false, icon: ''}
+    properties: {role: null, bold: true, align: left, spacing_above: small, background: '', icon: '', underline: false, font: '', icon_align: left, foreground: '', spacing_below: small, visible: true, border: '', italic: true, font_size: null, tooltip: '', text: 'Enter Password Again:'}
     type: Label
     layout_properties: {grid_position: 'UTUTVB,OUYMFM'}
   - name: text_box_7
-    properties: {role: null, align: left, hide_text: true, tooltip: '', placeholder: Retype Password, border: '', enabled: true, foreground: black, visible: true, text: '', font_size: null, font: '', spacing_above: small, type: text, spacing_below: small, italic: false, background: white, bold: false, underline: false}
+    properties: {role: null, bold: false, align: left, placeholder: Retype Password, spacing_above: small, background: white, type: text, underline: false, font: '', hide_text: true, foreground: black, spacing_below: small, visible: true, border: '', italic: false, enabled: true, font_size: null, tooltip: '', text: ''}
     type: TextBox
     layout_properties: {grid_position: 'UTUTVB,CJFWKJ CWIIDG,ZBIBMP'}
   - name: label_17
@@ -123,11 +116,11 @@ components:
     layout_properties: {grid_position: 'UTUTVB,CJFWKJ MAKBLU,UJHMWF'}
     event_bindings: {}
   - name: label_10_copy
-    properties: {role: null, align: left, tooltip: '', border: '', foreground: '', visible: true, text: Enter your Pan No, font_size: null, font: '', spacing_above: small, icon_align: left, spacing_below: small, italic: true, background: '', bold: true, underline: false, icon: ''}
+    properties: {role: null, bold: true, align: left, spacing_above: small, background: '', icon: '', underline: false, font: '', icon_align: left, foreground: '', spacing_below: small, visible: true, border: '', italic: true, font_size: null, tooltip: '', text: Enter your Pan No}
     type: Label
     layout_properties: {grid_position: 'RVPAQU,KMVOHA'}
   - name: text_box_4
-    properties: {role: null, align: left, hide_text: false, tooltip: '', placeholder: Pan, border: '', enabled: true, foreground: black, visible: true, text: '', font_size: null, font: '', spacing_above: small, type: text, spacing_below: small, italic: false, background: white, bold: false, underline: false}
+    properties: {role: null, bold: false, align: left, placeholder: Pan, spacing_above: small, background: white, type: text, underline: false, font: '', hide_text: false, foreground: black, spacing_below: small, visible: true, border: '', italic: false, enabled: true, font_size: null, tooltip: '', text: ''}
     type: TextBox
     layout_properties: {grid_position: 'RVPAQU,NYRBDH BPZHTQ,SSOYEU'}
     data_bindings:
@@ -138,11 +131,11 @@ components:
     type: Label
     layout_properties: {grid_position: 'RVPAQU,NYRBDH TVOWMB,RNKFFT'}
   - name: label_12_copy
-    properties: {role: null, align: left, tooltip: '', border: '', foreground: '', visible: true, text: 'Enter your Phone Number:', font_size: null, font: '', spacing_above: small, icon_align: left, spacing_below: small, italic: true, background: '', bold: true, underline: false, icon: ''}
+    properties: {role: null, bold: true, align: left, spacing_above: small, background: '', icon: '', underline: false, font: '', icon_align: left, foreground: '', spacing_below: small, visible: true, border: '', italic: true, font_size: null, tooltip: '', text: 'Enter your Phone Number:'}
     type: Label
     layout_properties: {grid_position: 'SAEDAX,PECDUQ'}
   - name: text_box_6
-    properties: {role: null, align: left, hide_text: false, tooltip: '', placeholder: Phone Number, border: '', enabled: true, foreground: black, visible: true, text: '', font_size: null, font: '', spacing_above: small, type: number, spacing_below: small, italic: false, background: white, bold: false, underline: false}
+    properties: {role: null, bold: false, align: left, placeholder: Phone Number, spacing_above: small, background: white, type: number, underline: false, font: '', hide_text: false, foreground: black, spacing_below: small, visible: true, border: '', italic: false, enabled: true, font_size: null, tooltip: '', text: ''}
     type: TextBox
     layout_properties: {grid_position: 'SAEDAX,MNYPJE DATAZI,ROHYRG'}
     data_bindings:
@@ -153,21 +146,21 @@ components:
     type: Label
     layout_properties: {grid_position: 'SAEDAX,MNYPJE UXQJFZ,SSHUMZ'}
   - name: label_11_copy
-    properties: {role: null, align: left, tooltip: '', border: '', foreground: '', visible: true, text: 'Enter your Address:', font_size: null, font: '', spacing_above: small, icon_align: left, spacing_below: small, italic: true, background: '', bold: true, underline: false, icon: ''}
+    properties: {role: null, bold: true, align: left, spacing_above: small, background: '', icon: '', underline: false, font: '', icon_align: left, foreground: '', spacing_below: small, visible: true, border: '', italic: true, font_size: null, tooltip: '', text: 'Enter your Address:'}
     type: Label
     layout_properties: {grid_position: 'CANMCM,FUNPMI'}
   - name: text_box_5
-    properties: {role: null, align: left, hide_text: false, tooltip: '', placeholder: Address, border: '', enabled: true, foreground: black, visible: true, text: '', font_size: null, font: '', spacing_above: small, type: text, spacing_below: small, italic: false, background: white, bold: false, underline: false}
+    properties: {role: null, bold: false, align: left, placeholder: Address, spacing_above: small, background: white, type: text, underline: false, font: '', hide_text: false, foreground: black, spacing_below: small, visible: true, border: '', italic: false, enabled: true, font_size: null, tooltip: '', text: ''}
     type: TextBox
     layout_properties: {grid_position: 'CANMCM,XETVER'}
     data_bindings:
     - {code: 'self.item[''address'']', writeback: true, property: text}
   - name: label_6_copy
-    properties: {role: null, align: left, tooltip: '', border: '', foreground: '', visible: true, text: 'Enter your Aadhar details:', font_size: null, font: '', spacing_above: small, icon_align: left, spacing_below: small, italic: true, background: '', bold: true, underline: false, icon: ''}
+    properties: {role: null, bold: true, align: left, spacing_above: small, background: '', icon: '', underline: false, font: '', icon_align: left, foreground: '', spacing_below: small, visible: true, border: '', italic: true, font_size: null, tooltip: '', text: 'Enter your Aadhar details:'}
     type: Label
     layout_properties: {grid_position: 'OFIHSF,ZSVTWG'}
   - name: text_box_8
-    properties: {role: null, align: left, hide_text: false, tooltip: '', placeholder: Aadhar detalis, border: '', enabled: true, foreground: black, visible: true, text: '', font_size: null, font: '', spacing_above: small, type: number, spacing_below: small, italic: false, background: white, bold: false, underline: false}
+    properties: {role: null, bold: false, align: left, placeholder: Aadhar detalis, spacing_above: small, background: white, type: number, underline: false, font: '', hide_text: false, foreground: black, spacing_below: small, visible: true, border: '', italic: false, enabled: true, font_size: null, tooltip: '', text: ''}
     type: TextBox
     layout_properties: {grid_position: 'OFIHSF,WOIVWM KYGRAD,NAHVJA'}
     data_bindings:
@@ -181,12 +174,12 @@ components:
     type: Spacer
     layout_properties: {grid_position: 'FRDZCL,CABLKA'}
   - name: button_1
-    properties: {role: null, align: center, tooltip: '', border: '', enabled: true, foreground: white, visible: true, text: Add User, font_size: 15, font: '', spacing_above: small, icon_align: left, spacing_below: small, italic: true, background: '#1d86da', bold: true, underline: false, icon: ''}
+    properties: {role: null, bold: true, align: center, spacing_above: small, background: '#1d86da', icon: '', underline: false, font: '', icon_align: left, foreground: white, spacing_below: small, visible: true, border: '', italic: true, enabled: true, font_size: 15, tooltip: '', text: Add User}
     type: Button
     layout_properties: {grid_position: 'NPRIVT,GRWXXL'}
     event_bindings: {click: button_1_click}
   - name: button_3
-    properties: {role: outlined-button, align: center, tooltip: '', border: '', enabled: true, foreground: white, visible: true, text: back, font_size: null, font: '', spacing_above: small, icon_align: left, spacing_below: small, italic: true, background: '#1d86da', bold: true, underline: false, icon: 'fa:backward'}
+    properties: {role: outlined-button, bold: true, align: center, spacing_above: small, background: '#1d86da', icon: 'fa:backward', underline: false, font: '', icon_align: left, foreground: white, spacing_below: small, visible: true, border: '', italic: true, enabled: true, font_size: null, tooltip: '', text: back}
     type: Button
     layout_properties:
       col_widths: {}
@@ -197,7 +190,7 @@ components:
     type: Spacer
     layout_properties: {grid_position: 'NISQOJ,HIRXXH'}
   - name: outlined_card_1
-    properties: {role: null, tooltip: '', border: '', foreground: '', visible: true, wrap_on: mobile, col_spacing: none, spacing_above: none, col_widths: '{"VMILPR":8,"FDANOO":15,"HAKDVS":15}', spacing_below: none, background: '#2270ad'}
+    properties: {role: null, col_widths: '{"VMILPR":8,"FDANOO":15,"HAKDVS":15}', spacing_above: none, background: '#2270ad', wrap_on: mobile, col_spacing: none, foreground: '', spacing_below: none, visible: true, border: '', tooltip: ''}
     type: ColumnPanel
     layout_properties: {grid_position: 'VWEJAA,PZTXCG', full_width_row: true}
     components:
@@ -206,15 +199,15 @@ components:
       type: Label
       layout_properties: {grid_position: 'XSXLAE,XVKBKL'}
     - name: label_2
-      properties: {role: null, align: center, tooltip: '', border: '', foreground: 'theme:On Primary', visible: true, text: Disclaimer, font_size: 18, font: '', spacing_above: small, icon_align: left, spacing_below: small, italic: false, background: '', bold: true, underline: false, icon: ''}
+      properties: {role: null, bold: true, align: center, spacing_above: small, background: '', icon: '', underline: false, font: '', icon_align: left, foreground: 'theme:On Primary', spacing_below: small, visible: true, border: '', italic: false, font_size: 18, tooltip: '', text: Disclaimer}
       type: Label
       layout_properties: {grid_position: 'XSXLAE,VMILPR'}
     - name: label_3
-      properties: {role: null, align: center, tooltip: '', border: '', foreground: 'theme:On Primary', visible: true, text: Privacy Policy, font_size: 18, font: '', spacing_above: small, icon_align: left, spacing_below: small, italic: false, background: '', bold: true, underline: false, icon: ''}
+      properties: {role: null, bold: true, align: center, spacing_above: small, background: '', icon: '', underline: false, font: '', icon_align: left, foreground: 'theme:On Primary', spacing_below: small, visible: true, border: '', italic: false, font_size: 18, tooltip: '', text: Privacy Policy}
       type: Label
       layout_properties: {grid_position: 'XSXLAE,FDANOO'}
     - name: label_4
-      properties: {role: null, align: right, tooltip: '', border: '', foreground: 'theme:On Primary', visible: true, text: Code Of Commitment, font_size: 18, font: '', spacing_above: small, icon_align: left, spacing_below: small, italic: false, background: '', bold: true, underline: false, icon: ''}
+      properties: {role: null, bold: true, align: right, spacing_above: small, background: '', icon: '', underline: false, font: '', icon_align: left, foreground: 'theme:On Primary', spacing_below: small, visible: true, border: '', italic: false, font_size: 18, tooltip: '', text: Code Of Commitment}
       type: Label
       layout_properties: {grid_position: 'XSXLAE,HAKDVS'}
 is_package: true
