@@ -264,7 +264,8 @@ class admin_view_user_details(admin_view_user_detailsTemplate):
         app_tables.wallet_admins_actions.add_row(
             admins_actions_username=username,
             admins_actions_date=timestamp,
-            admins_actions=action_log
+            admins_actions=action_log,
+            admins_actions_name=self.user
         )
 
     # def check_profile_pic(self):

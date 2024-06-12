@@ -9,6 +9,8 @@ class audit_trail(audit_trailTemplate):
   def __init__(self, user=None, **properties):
     # Set Form properties and Data Bindings.
     self.user = user
+    log = self.user['users_username']
+    print(log)
     self.init_components(**properties)
     self.load_all_actions()
     # Any code you write here will run before the form opens.
