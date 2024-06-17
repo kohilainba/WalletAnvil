@@ -7,12 +7,15 @@ from anvil import tables, app
 import random
 import anvil.email
 import base64
-# from PIL import Image,ImageDraw
+from PIL import Image,ImageDraw
 from io import BytesIO
 #import datetime
 import smtplib
 from email.mime.text import MIMEText
-from email.mime.multipart import MIMEMultipart    
+from email.mime.multipart import MIMEMultipart   
+import anvil.server
+import sendgrid
+from sendgrid.helpers.mail import Mail
 
 @anvil.server.callable
 def get_user_for_login(login_input):
@@ -301,32 +304,31 @@ def send_otp_email(email, otp):
     # Check if the email exists in the database
     if validate_email(email):
         try:
-            # SMTP configuration
-            smtp_server = 'smtp.gmail.com'
-            smtp_port = 587
-            smtp_username = 'ascenddefilabs@gmail.com'
-            smtp_password = 'ascenddefilabs@001'
+            # SendGrid configuration
+            sendgrid_api_key = 'your_sendgrid_api_key_here'
+            sg = sendgrid.SendGridAPIClient(api_key=sendgrid_api_key)
+            from_email = 'your_verified_sendgrid_email@example.com'
             
             # Create the email message
             subject = "Your One Time Password (OTP)"
-            message = f"Your OTP is: {otp}"
-            msg = MIMEMultipart()
-            msg['From'] = smtp_username
-            msg['To'] = email
-            msg['Subject'] = subject
-            msg.attach(MIMEText(message, 'plain'))
+            content = f"Your OTP is: {otp}"
+            message = Mail(
+                from_email=from_email,
+                to_emails=email,
+                subject=subject,
+                plain_text_content=content
+            )
 
             # Send the email
-            server = smtplib.SMTP(smtp_server, smtp_port)
-            server.starttls()
-            server.login(smtp_username, smtp_password)
-            server.sendmail(smtp_username, email, msg.as_string())
-            server.quit()
+            response = sg.send(message)
 
-            # Store the OTP in the server session
-            anvil.server.session['stored_otp'] = otp
-
-            print("OTP sent:", otp)
+            # Check response status
+            if response.status_code == 202:
+                # Store the OTP in the server session
+                anvil.server.session['stored_otp'] = otp
+                print("OTP sent:", otp)
+            else:
+                print("Failed to send OTP:", response.status_code, response.body)
         except Exception as e:
             print("Failed to send OTP:", e)
     else:
