@@ -10,6 +10,9 @@ import base64
 # from PIL import Image,ImageDraw
 from io import BytesIO
 #import datetime
+import smtplib
+from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart    
 
 @anvil.server.callable
 def get_user_for_login(login_input):
@@ -297,23 +300,38 @@ def send_otp_email(email, otp):
     """
     # Check if the email exists in the database
     if validate_email(email):
-        # Compose email message
-        subject = "Your One Time Password (OTP)"
-        message = f"Your OTP is: {otp}"
-        
-        # Send email
-        anvil.email.send(
-            to=email,
-            subject=subject,
-            text=message
-        )
+        try:
+            # SMTP configuration
+            smtp_server = 'smtp.gmail.com'
+            smtp_port = 587
+            smtp_username = 'ascenddefilabs@gmail.com'
+            smtp_password = 'ascenddefilabs@001'
+            
+            # Create the email message
+            subject = "Your One Time Password (OTP)"
+            message = f"Your OTP is: {otp}"
+            msg = MIMEMultipart()
+            msg['From'] = smtp_username
+            msg['To'] = email
+            msg['Subject'] = subject
+            msg.attach(MIMEText(message, 'plain'))
 
-        # Store the OTP in the server session
-        anvil.server.session['stored_otp'] = otp
+            # Send the email
+            server = smtplib.SMTP(smtp_server, smtp_port)
+            server.starttls()
+            server.login(smtp_username, smtp_password)
+            server.sendmail(smtp_username, email, msg.as_string())
+            server.quit()
 
-        print("OTP sent:", otp)
+            # Store the OTP in the server session
+            anvil.server.session['stored_otp'] = otp
+
+            print("OTP sent:", otp)
+        except Exception as e:
+            print("Failed to send OTP:", e)
     else:
         print("Email not found. OTP not sent.")
+
 
 @anvil.server.callable
 def get_stored_otp():

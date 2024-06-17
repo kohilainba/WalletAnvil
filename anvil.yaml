@@ -6,7 +6,7 @@ services:
   server_config: {}
 - source: /runtime/services/anvil/email.yml
   client_config: {}
-  server_config: {custom_smtp: true, test_mode: false, smtp_host: smtp.gmail.com, smtp_port: 467, smtp_user: shivaprasadgowda9380@gmail.com, smtp_password: AQkLwiwrAzIcF1QYfiOm9z9ifehylvfRXNyXvL/37A3C3c1jrwV9GDCul6vsjWlwdPJvSMQJlFmIqxg6HCksTJKqsjVGD5/I+XRRHn/SsER5bDxoZ4u7++hGjeHGwEq99XRuthrVN1BPVCYMfl+Cq1+63PlQ7kd7iMTK++Ws8vQIeWug, smtp_encryption: starttls}
+  server_config: {custom_smtp: true, test_mode: false, smtp_host: smtp.gmail.com, smtp_port: 587, smtp_user: ascenddefilabs@gmail.com, smtp_password: kqeOul3SEJAG6BirukRGwEJvEw93r+khjgQmH18j7DILC134QY1+LkPEeGHi9Jr4yIklVGSDwrCui781U77J/fW14I8eQuxkAdZE7x3e7T0Lmq82N4FL8qW6eoAt7tobfAkk8m9F0t2DAYYbgTP+XH1wWvsm5sub7Q43i2VfZXOzz32ZIWab/ynPOA==, smtp_encryption: ''}
 - source: /runtime/services/anvil/secrets.yml
   client_config: {}
   server_config: {}
@@ -14,7 +14,12 @@ startup: {type: form, module: Home}
 package_name: d1
 allow_embedding: false
 name: Wallet Anvil
-runtime_options: {version: 2, client_version: '3', server_version: python3-sandbox, server_spec: null}
+runtime_options:
+  version: 2
+  client_version: '3'
+  server_version: python3-sandbox
+  server_spec: null
+  server_spec_disabled: {requirements: '', base: python310-minimal}
 metadata: {}
 startup_form: null
 db_schema:
