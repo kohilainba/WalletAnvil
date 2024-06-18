@@ -307,7 +307,7 @@ def send_otp_email(email, otp):
             # SendGrid configuration
             sendgrid_api_key = 'your_sendgrid_api_key_here'
             sg = sendgrid.SendGridAPIClient(api_key=sendgrid_api_key)
-            from_email = 'your_verified_sendgrid_email@example.com'
+            from_email = 'tv53lgri3pi2dfy7.anvil.app'
             
             # Create the email message
             subject = "Your One Time Password (OTP)"
